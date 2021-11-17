@@ -279,7 +279,7 @@ composer responses:off
 
 # Contributions
 
-Contributions are welcome. To discuss any bugs, problems, fixes or improvements please refer to the dicussions section.
+Contributions are welcome. To discuss any bugs, problems, fixes or improvements please refer to the discussions section.
 
 Before creating a pull request, make sure to open an issue first.
 
