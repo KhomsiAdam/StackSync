@@ -1,0 +1,19 @@
+// Abstracts
+@use '../abstracts' as *;
+
+/* Header */
+.header {
+    position: relative;
+    &__logo {
+        justify-self: center;
+        width: 70%;
+        @include breakpoint-min(ss-var($breakpoints, "1280")) {
+            width: 100%;
+        }
+        &__link {
+            path {
+                fill: var(--theme-title-color);
+            }
+        }
+    }
+}

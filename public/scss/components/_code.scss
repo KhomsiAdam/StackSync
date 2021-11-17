@@ -1,0 +1,60 @@
+// Abstracts
+@use "../abstracts/" as *;
+
+/* Component : Code snippets */
+.snippet {
+    padding: 1em;
+    margin: 2em 0 1em 0;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 8%);
+    max-width: 100%;
+    background: var(--theme-code-bg);
+    white-space: pre;
+    word-wrap: break-word;
+    overflow: hidden;
+    display: grid;
+    gap: 2em;
+    grid-template-columns: 1fr 50px;
+    border-radius: 5px;
+    &__code {
+        font-weight: ss-var($font-weight, "medium");
+        color: var(--theme-code-color);
+        font-family: "Inconsolata", "Monaco", "Consolas", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+        display: block;
+        margin-left: 10px;
+        padding: 15px 16px 14px;
+        border-left: 1px solid var(--theme-code-color);
+        overflow-x: auto;
+        font-size: 1.4rem;
+        line-height: 19px;
+    }
+    &__copy {
+        width: 48px;
+        height: 48px;
+        padding: 10px;
+        border-radius: 5px;
+        color: var(--theme-code-color);
+        border: 2px solid var(--theme-code-color);
+        opacity: 1;
+        transition: 0.3s linear;
+        cursor: pointer;
+    }
+    &__copy.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s linear;
+    }
+    &__copy.copied {
+        color: ss-var($colors, "secondary", "green");
+        border: 2px solid ss-var($colors, "secondary", "green");
+        transition: 0.3s linear;
+    }
+}
+/* File, folder or small code piece */
+.file {
+    color: var(--theme-code-color);
+    background: var(--theme-code-bg);
+    font-weight: ss-var($font-weight, "semibold");
+    border-radius: 5px;
+    padding: 0px 8px 2px 8px;
+    margin: 0 5px;
+}

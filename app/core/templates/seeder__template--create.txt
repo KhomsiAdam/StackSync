@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Seeders;
+
+use App\Core\Seeders;
+
+class {{ class }}
+{
+
+    public static function seed{{ tableUpper }}()
+    {
+
+        // Data that will be seeded to the table. If you add any column through migration or manually before creating a seeder, be sure to add its key and value or else it wil be seeded as 'NULL'
+        Seeders::create('{{ table }}',
+        [
+            '{{ table }}_id' => {{ id }},{{ columns }}
+        ]);
+    }
+}

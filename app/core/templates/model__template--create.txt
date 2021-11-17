@@ -1,0 +1,121 @@
+<?php
+
+namespace App\Model;
+
+use App\Config\Middleware;
+use PDO;
+
+class {{ model }} extends Middleware
+{
+    // * Declare your properties here:
+    private ${{ table }}_id;{{ m_params }}
+
+    // * Define setters and getters for your properties:
+    function set{{ tableUpper }}Id(${{ table }}_id) { $this->{{ table }}_id = ${{ table }}_id; }
+    function get{{ tableUpper }}Id() { return $this->{{ table }}_id; }{{ m_setget }}
+
+    // * Define your methods below
+    // {{ tableUpper }} create
+    public function create($table)
+    {
+        $sql = "INSERT INTO $table ({{ table }}_id{{ columns_insert }})
+        VALUES (:{{ table }}_id{{ values_insert }})";
+        $stmt = $this->db_conn->prepare($sql);
+        $stmt->bindParam(':{{ table }}_id', $this->{{ table }}_id);{{ bind_insert }}
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // {{ tableUpper }} read all
+    public function readAll($table)
+    {
+        $sql = "SELECT {{ columns }} FROM $table";
+        $stmt = $this->db_conn->prepare($sql);
+        if ($stmt->execute()) {
+            ${{ table }}s = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (is_array(${{ table }}s)) {
+                for ($i = 0; $i < count(${{ table }}s); $i++) {
+                    // Format date for all {{ table }}s to a readable format
+                    ${{ table }}s[$i]['{{ table }}_created_at'] = (date("M d Y, H:m A", strtotime(${{ table }}s[$i]['{{ table }}_created_at'])));
+                    ${{ table }}s[$i]['{{ table }}_updated_at'] = (date("M d Y, H:m A", strtotime(${{ table }}s[$i]['{{ table }}_updated_at'])));
+                }
+                return ${{ table }}s;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    // {{ tableUpper }} read unique
+    public function readUnique($table)
+    {
+        $sql = "SELECT {{ columns }} FROM $table WHERE ({{ table }}_id = :{{ table }}_id)";
+        $stmt = $this->db_conn->prepare($sql);
+        $stmt->bindParam(':{{ table }}_id', $this->{{ table }}_id);
+        if ($stmt->execute()) {
+            ${{ table }} = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (is_array(${{ table }})) {
+                // Format the date to a better readable format
+                ${{ table }}['{{ table }}_created_at'] = (date("M d Y, H:m A", strtotime(${{ table }}['{{ table }}_created_at'])));
+                ${{ table }}['{{ table }}_updated_at'] = (date("M d Y, H:m A", strtotime(${{ table }}['{{ table }}_updated_at'])));
+                return ${{ table }};
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    // {{ tableUpper }} update
+    public function update($table)
+    {
+        $sql = "SELECT {{ table }}_id FROM $table WHERE {{ table }}_id = :{{ table }}_id";
+        $stmt = $this->db_conn->prepare($sql);
+        $stmt->bindParam(':{{ table }}_id', $this->{{ table }}_id);
+        $stmt->execute();
+        ${{ table }}_id = $stmt->fetch();        
+        
+        if (!empty(${{ table }}_id)) {
+            $sql = "UPDATE $table SET {{ columns_insert }}, {{ table }}_updated_at = CURRENT_TIMESTAMP
+            WHERE {{ table }}_id = :{{ table }}_id";
+            $stmt = $this->db_conn->prepare($sql);{{ bind_insert }}
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+    }
+
+    // {{ tableUpper }} delete
+    public function delete($table)
+    {
+        $sql = "SELECT {{ table }}_id FROM $table WHERE {{ table }}_id = :{{ table }}_id";
+        $stmt = $this->db_conn->prepare($sql);
+        $stmt->bindParam(':{{ table }}_id', $this->{{ table }}_id);
+        $stmt->execute();
+        ${{ table }}_id = $stmt->fetch();        
+        
+        if (!empty(${{ table }}_id)) {
+            $sql = "DELETE FROM $table WHERE {{ table }}_id = :{{ table }}_id";
+            $stmt = $this->db_conn->prepare($sql);
+            $stmt->bindParam(':{{ table }}_id', $this->{{ table }}_id);
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+}

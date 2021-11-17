@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Migrations;
+
+use App\Config\Dbh;
+use App\Config\Scripts;
+
+class {{ class }} extends Dbh
+{
+
+    public function migrate()
+    {
+        Scripts::log('Updating {{ table }} table. Adding {{ column }} column...');
+        $db_conn = $this->connect();
+        $stmt = $db_conn->prepare("ALTER TABLE {{ table }} ADD COLUMN IF NOT EXISTS {{ column }} VARCHAR(32)");
+        $stmt->execute();
+    }
+
+    public function drop()
+    {
+        Scripts::log('Dropping column: {{ column }} from {{ table }} table...');
+        $db_conn = $this->connect();
+        $stmt = $db_conn->prepare("ALTER TABLE {{ table }} DROP COLUMN IF EXISTS name");
+        $stmt->execute();
+    }
+}

@@ -1,0 +1,93 @@
+<?php
+
+namespace App\Controller;
+
+use App\Config\Middleware;
+use App\Model\{{ model }};
+
+class {{ controller }} extends Middleware
+{
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    //* 'validateToken()' specifies if the method requires token validation to run (must be in the first line of a controller method)
+    //* 'validateParams()' data type argument defaults to STRING, modify to INTEGER, BOOLEAN or EMAIL if needed
+
+    // {{ tableUpper }} create
+    public function create()
+    {
+        ${{ table }}_id = {{ id }};{{ c_validate_create_params }}
+        $model = new {{ model }};
+        $model->set{{ tableUpper }}Id(${{ table }}_id);{{ c_setters }}
+        $this->result = $model->create('{{ table }}');
+            if ($this->result == false) {
+                $message = 'Failed to create {{ tableUpper }}.';
+            } else {
+                $message = "{{ tableUpper }} created successfully.";
+            }
+        Middleware::returnResponse(RESPONSE_MESSAGE, $message, $this->result);
+    }
+
+    // {{ tableUpper }} read all
+    public function readAll()
+    {
+        $model = new {{ model }};
+        $this->result = $model->readAll('{{ table }}');
+            if ($this->result == false) {
+                $message = 'Failed to fetch all {{ tableUpper }}s.';
+            } else {
+                $message = "All {{ tableUpper }}s fetched successfully.";
+            }
+        Middleware::returnResponse(RESPONSE_MESSAGE, $message, $this->result);
+    }
+
+    // {{ tableUpper }} read unique
+    public function readUnique()
+    {
+        ${{ table }}_id = $this->validateParams('{{ table }}_id', $this->param['{{ table }}_id'], STRING);
+        $model = new {{ model }};
+        $model->set{{ tableUpper }}Id(${{ table }}_id);
+        $this->result = $model->readUnique('{{ table }}');
+            if ($this->result == false) {
+                $message = 'Failed to fetch unique {{ tableUpper }}.';
+            } else {
+                $message = 'Unique {{ tableUpper }} fetched successfully.';
+            }
+        Middleware::returnResponse(RESPONSE_MESSAGE, $message, $this->result);
+    }
+
+    // {{ tableUpper }} update
+    public function update()
+    {
+        $this->validateToken();
+        ${{ table }}_id = $this->validateParams('{{ table }}_id', $this->param['{{ table }}_id'], STRING);{{ c_validate_update_params }}
+        $model = new {{ model }};
+        $model->set{{ tableUpper }}Id(${{ table }}_id);{{ c_setters }}
+        $this->result = $model->update('{{ table }}');
+            if ($this->result == false) {
+                $message = '{{ tableUpper }} does not exist.';
+            } else {
+                $message = "{{ tableUpper }} informations updated successfully.";
+            }
+        Middleware::returnResponse(RESPONSE_MESSAGE, $message, $this->result);
+    }
+
+    // {{ tableUpper }} delete
+    public function delete()
+    {
+        $this->validateToken();
+        ${{ table }}_id = $this->validateParams('{{ table }}_id', $this->param['{{ table }}_id'], STRING);
+        $model = new {{ model }};
+        $model->set{{ tableUpper }}Id(${{ table }}_id);
+        $this->result = $model->delete('{{ table }}');
+            if ($this->result == false) {
+                $message = '{{ tableUpper }} does not exist.';
+            } else {
+                $message = "{{ tableUpper }} deleted successfully.";
+            }
+        Middleware::returnResponse(RESPONSE_MESSAGE, $message, $this->result);
+    }
+}

@@ -1,0 +1,19 @@
+# VSCode
+.vscode
+
+# Composer
+/vendor
+composer.lock
+composer.phar
+
+# Node
+/node_modules
+/public/node_modules
+node_modules/
+
+# SASS
+.sass-cache/
+#*.css.map
+
+# ENV Variables
+.env

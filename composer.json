@@ -1,0 +1,112 @@
+{
+    "name": "khomsiadam/stacksync",
+    "description": "StackSync is a fullstack PHP mini framework, with an MVC structure, custom API system with a Middleware and JWT authentication, components based views, flexible routing, PSR4 autoloading. Essential files generation (migrations, seeders, controllers and models) and other operations can be executed through custom commands.",
+    "authors": [
+        {
+            "name": "KhomsiAdam",
+            "email": "khomsiadam@gmail.com"
+        }
+    ],
+    "keywords": ["api", "php", "components", "middleware", "framework", "mvc", "migrations", "routing", "commands", "environment-variables", "seeding", "psr-4", "jwt-authentication"],
+    "homepage": "https://github.com/KhomsiAdam/StackSync",
+    "license": "MIT",
+    "config": {
+        "vendor-dir": "vendor",
+        "process-timeout": 3600
+    },
+    "require": {
+        "firebase/php-jwt": "^5.3",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "App\\Config\\": "app/config/",
+            "App\\Core\\": "app/core/",
+            "App\\Controller\\": "app/controllers/",
+            "App\\Migrations\\": "app/migrations/",
+            "App\\Model\\": "app/models/",
+            "App\\Seeders\\": "app/seeders/",
+            "App\\View\\": "app/views/"
+        }
+    },
+    "scripts": {
+        "load": [
+            "@composer dump-autoload"
+        ],
+        "serve": [
+            "App\\Config\\Scripts::serve"
+        ],
+        "serve:local": [
+            "@php -S localhost:8080 -t public"
+        ],
+        "serve:remote": [
+            "@php -S 0.0.0.0:8080 -t public"
+        ],
+        "migrate": [
+            "App\\Config\\Scripts::migrate"
+        ],
+        "migrate:apply": [
+            "App\\Core\\Migrations::applyMigrations"
+        ],
+        "migrate:drop": [
+            "App\\Core\\Migrations::dropMigrations"
+        ],
+        "migrate:apply:seed": [
+            "App\\Core\\Migrations::applyMigrations",
+            "App\\Core\\Seeders::seedDatabase"
+        ],
+        "migrate:apply:seed:user": [
+            "App\\Core\\Migrations::applyMigrations",
+            "App\\Seeders\\UserSeeder::seedUser"
+        ],
+        "seed": [
+            "App\\Config\\Scripts::seed"
+        ],
+        "seed:all": [
+            "App\\Seeders\\DatabaseSeeder::seedDatabase"
+        ], 
+        "seed:user": [
+            "App\\Seeders\\UserSeeder::seedUser"
+        ], 
+        "make": [
+            "App\\Config\\Scripts::make"
+        ],
+        "make:migration": [
+            "App\\Core\\Make::migration"
+        ],
+        "make:seeder": [
+            "App\\Core\\Make::seeder"
+        ],
+        "make:controller": [
+            "App\\Core\\Make::controller"
+        ],
+        "errors": [
+            "App\\Config\\Scripts::errors"
+        ],
+        "errors:on": [
+            "App\\Config\\Status::errorsOn"
+        ],
+        "errors:off": [
+            "App\\Config\\Status::errorsOff"
+        ],
+        "responses": [
+            "App\\Config\\Scripts::responses"
+        ],
+        "responses:on": [
+            "App\\Config\\Status::responsesOn"
+        ],
+        "responses:off": [
+            "App\\Config\\Status::ResponsesOff"
+        ]
+    },
+    "scripts-descriptions": {
+        "load": "short for dump-autoload, to setup autoload for namespaces/classes",
+        "serve": "Run the php built-in server either locally (serve:local) or on your local network (serve:remote)",
+        "migrate": "Apply or delete migrations",
+        "seed": "Seed tables with predefined data",
+        "make": "Create migration, seeder, controller & model",
+        "errors": "Error handling",
+        "responses": "API responses"
+    }
+}

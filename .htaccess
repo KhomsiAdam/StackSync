@@ -1,0 +1,7 @@
+# Redirecting to index in public folder
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteRule ^$ public/ [L]
+    RewriteRule (.*) public/$1 [L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+</IfModule>

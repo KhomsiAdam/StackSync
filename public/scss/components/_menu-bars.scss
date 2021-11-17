@@ -1,0 +1,46 @@
+/* Component : Navigation Menu Icon */
+.menu-bars,
+.menu-bars:after,
+.menu-bars:before {
+    width: 35px;
+    height: 3px;
+}
+.menu-bars {
+    position: relative;
+    transform: translateY(25px);
+    background: var(--theme-title-color);
+}
+.menu-bars.animate {
+    background: var(--theme-title-color);
+}
+.menu-bars:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    background: var(--theme-title-color);
+    transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-bars:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    background: var(--theme-title-color);
+    transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-bars.animate:after {
+    top: 0;
+    transform: rotate(45deg);
+    background: var(--theme-title-color);
+    transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-bars.animate {
+    background: none;
+}
+.menu-bars.animate:before {
+    bottom: 0;
+    transform: rotate(-45deg);
+    background: var(--theme-title-color);
+    transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}

@@ -1,0 +1,13 @@
+// Abstracts
+@use "../abstracts" as *;
+
+/* ======= */
+/* 404 CSS */
+/* ======= */
+
+.error-404 {
+    background: ss-var($colors, "neutral", "white");
+    border-radius: 10px;
+    justify-items: center;
+    gap: 3em;
+}

@@ -1,0 +1,85 @@
+/* Component : Theme toggler (light/dark) */
+#theme-toggler {
+    cursor: pointer;
+    background: 0;
+    border: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.9;
+    border-radius: 50%;
+    isolation: isolate;
+}
+
+#theme-toggler svg {
+    transition: fill 0.3s linear;
+    fill: var(--theme-title-color);
+}
+.light-theme #theme-toggler svg:hover {
+    transition: fill 0.3s linear;
+    fill: var(--theme-title-color);
+}
+.dark-theme #theme-toggler svg:hover {
+    transition: fill 0.3s linear;
+    fill: var(--theme-title-color);
+}
+
+.light-theme #theme-toggler::before {
+    animation: pulseToLight 650ms ease-out;
+}
+
+.dark-theme #theme-toggler::before {
+    animation: pulseToDark 650ms ease-out;
+}
+
+.toggle-circle {
+    transition: transform 500ms ease-out;
+}
+
+.light-theme .toggle-circle {
+    transform: translateX(-15%);
+}
+
+.toggle-sun {
+    transform-origin: center center;
+    transition: transform 750ms cubic-bezier(0.11, 0.14, 0.29, 1.32);
+}
+
+.light-theme .toggle-sun {
+    transform: rotate(0.5turn);
+}
+
+@keyframes pulseToLight {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    10% {
+        transform: scale(1);
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseToDark {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    10% {
+        transform: scale(1);
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,19 @@
+// Abstracts
+@use '../abstracts' as *;
+
+/* Footer */
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    &__text {
+        color: var(--theme-text-color);
+    }
+}
+@include breakpoint-min(ss-var($breakpoints, "1024")) {
+    .footer {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

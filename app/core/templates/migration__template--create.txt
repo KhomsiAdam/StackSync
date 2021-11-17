@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Migrations;
+
+use App\Config\Dbh;
+use App\Config\Scripts;
+
+class {{ class }} extends Dbh
+{
+
+    public function migrate()
+    {
+        Scripts::log("Creating {{ table }} table...");
+        $db_conn = $this->connect();
+        $stmt = $db_conn->prepare("CREATE TABLE IF NOT EXISTS {{ table }} (
+                {{ table }}_id {{ id_type }}NOT NULL,
+                {{ table }}_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                {{ table }}_updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP{{ ) }}{{ , }}{{ ref_id }} {{ ref_type }}{{ , }}{{ foreign_key }} {{ id }} {{ ref }} {{ cascade }}");
+        $stmt->execute();
+    }
+    
+    public function drop()
+    {
+        Scripts::log("Dropping {{ table }} table...");
+        $db_conn = $this->connect();
+        $stmt = $db_conn->prepare("DROP TABLE IF EXISTS {{ table }}");
+        $stmt->execute();
+    }
+}

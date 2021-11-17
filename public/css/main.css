@@ -1,0 +1,979 @@
+/* ====== */
+/* Resets */
+/* ====== */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap");
+/* ============================== */
+/* Export variables to JavaScript */
+/* ============================== */
+/* Load the SASS variables that you want into the body::after's content into a JSON format to be converted to a JS object */
+body.load-variables::after {
+  position: absolute;
+  visibility: hidden;
+  font-size: 0;
+  z-index: -1;
+  /* Name the object keys the names you want to use in JavaScript, access the variables values with the ss-var() function with interpolation */
+  /* To format the CSS content property in a readable format, the use of a backlash '\' at the end of each line make it possible to break strings */
+  content: '{                "colors": {                    "p_blue": "#1f6f8b",                    "s_darkblue": "#1c2b2d",                    "s_lightblue": "#51c4d3",                    "n_black": "#000000",                    "n_darkgray": "#343434",                    "n_gray": "#99a8b2",                    "n_lightgray": "#d8e3e7",                    "n_white": "#ffffff"                },                "font_weight": {                    "thin": "100",                    "extralight": "200",                    "light": "300",                    "regular": "400",                    "medium": "500",                    "semibold": "600",                    "bold": "700",                    "extrabold": "800",                    "blackbold": "900"                },                "breakpoints": {                    "320": "320px",                    "360": "360px",                    "375": "375px",                    "425": "425px",                    "768": "768px",                    "800": "800px",                    "900": "900px",                    "1024": "1024px",                    "1280": "1280px",                    "1366": "1366px",                    "1440": "1440px",                    "1600": "1600px",                    "1680": "1680px",                    "1920": "1920px",                    "2560": "2560px"                }            }';
+}
+
+:root {
+  --theme-body-bg: #d8e3e7;
+  --theme-section-bg: #ffffff;
+  --theme-line-color: transparent;
+  --theme-text-color: #1c2b2d;
+  --theme-title-color: #1f6f8b;
+  --theme-code-color: #d8e3e7;
+  --theme-code-bg: #1c2b2d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-body-bg: #1c2b2d;
+    --theme-section-bg: #324c50;
+    --theme-line-color: #1f6f8b;
+    --theme-text-color: #d8e3e7;
+    --theme-title-color: #51c4d3;
+    --theme-code-color: #1c2b2d;
+    --theme-code-bg: #d8e3e7ee;
+  }
+}
+.light-theme {
+  --theme-body-bg: #d8e3e7;
+  --theme-section-bg: #ffffff;
+  --theme-line-color: transparent;
+  --theme-text-color: #1c2b2d;
+  --theme-title-color: #1f6f8b;
+  --theme-code-color: #d8e3e7;
+  --theme-code-bg: #1c2b2d;
+}
+
+.dark-theme {
+  --theme-body-bg: #1c2b2d;
+  --theme-section-bg: #324c50;
+  --theme-line-color: #1f6f8b;
+  --theme-text-color: #d8e3e7;
+  --theme-title-color: #51c4d3;
+  --theme-code-color: #1c2b2d;
+  --theme-code-bg: #d8e3e7ee;
+}
+
+/* ========= */
+/* Font Face */
+/* ========= */
+/* Thin */
+@font-face {
+  font-family: "Raleway";
+  font-style: "normal";
+  font-weight: 100;
+  src: url("/fonts/Raleway-Thin-100.woff2") format("woff2"), url("/fonts/Raleway-Thin-100.woff") format("woff"), url("/fonts/Raleway-Thin-100.ttf") format("truetype"), local("Raleway");
+  font-display: swap;
+}
+/* Extralight */
+@font-face {
+  font-family: "Raleway";
+  font-style: "normal";
+  font-weight: 200;
+  src: url("/fonts/Raleway-Extralight-200.woff2") format("woff2"), url("/fonts/Raleway-Extralight-200.woff") format("woff"), url("/fonts/Raleway-Extralight-200.ttf") format("truetype"), local("Raleway");
+  font-display: swap;
+}
+/* Light */
+@font-face {
+  font-family: "Raleway";
+  font-style: "normal";
+  font-weight: 300;
+  src: url("/fonts/Raleway-Light-300.woff2") format("woff2"), url("/fonts/Raleway-Light-300.woff") format("woff"), url("/fonts/Raleway-Light-300.ttf") format("truetype"), local("Raleway");
+  font-display: swap;
+}
+/* Regular */
+@font-face {
+  font-family: "Raleway";
+  font-style: "normal";
+  font-weight: 400;
+  src: url("/fonts/Raleway-Regular-400.woff2") format("woff2"), url("/fonts/Raleway-Regular-400.woff") format("woff"), url("/fonts/Raleway-Regular-400.ttf") format("truetype"), local("Raleway");
+  font-display: swap;
+}
+/* Medium */
+@font-face {
+  font-family: "Raleway";
+  font-style: "normal";
+  font-weight: 500;
+  src: url("/fonts/Raleway-Medium-500.woff2") format("woff2"), url("/fonts/Raleway-Medium-500.woff") format("woff"), url("/fonts/Raleway-Medium-500.ttf") format("truetype"), local("Raleway");
+  font-display: swap;
+}
+/* Semibold */
+@font-face {
+  font-family: "Raleway";
+  font-style: "normal";
+  font-weight: 600;
+  src: url("/fonts/Raleway-Semibold-600.woff2") format("woff2"), url("/fonts/Raleway-Semibold-600.woff") format("woff"), url("/fonts/Raleway-Semibold-600.ttf") format("truetype"), local("Raleway");
+  font-display: swap;
+}
+/* Bold */
+@font-face {
+  font-family: "Raleway";
+  font-style: "normal";
+  font-weight: 700;
+  src: url("/fonts/Raleway-Bold-700.woff2") format("woff2"), url("/fonts/Raleway-Bold-700.woff") format("woff"), url("/fonts/Raleway-Bold-700.ttf") format("truetype"), local("Raleway");
+  font-display: swap;
+}
+/* Extrabold */
+@font-face {
+  font-family: "Raleway";
+  font-style: "normal";
+  font-weight: 800;
+  src: url("/fonts/Raleway-Extrabold-800.woff2") format("woff2"), url("/fonts/Raleway-Extrabold-800.woff") format("woff"), url("/fonts/Raleway-Extrabold-800.ttf") format("truetype"), local("Raleway");
+  font-display: swap;
+}
+/* Blackbold */
+@font-face {
+  font-family: "Raleway";
+  font-style: "normal";
+  font-weight: 900;
+  src: url("/fonts/Raleway-Black-900.woff2") format("woff2"), url("/fonts/Raleway-Black-900.woff") format("woff"), url("/fonts/Raleway-Black-900.ttf") format("truetype"), local("Raleway");
+  font-display: swap;
+}
+/* ========== */
+/* Typography */
+/* ========== */
+/* Standart mobile first typography */
+h1 {
+  font-size: 3.2rem;
+}
+
+h2 {
+  font-size: 2.6rem;
+}
+
+h3 {
+  font-size: 2.2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
+p,
+span,
+strong,
+label,
+a,
+li {
+  font-size: 1.6rem;
+}
+
+/* Mobile typography fixes for small screens: 320px ~ 360px */
+@media only screen and (min-width: 320px) and (max-width: 360px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  h4 {
+    font-size: 1.6rem;
+  }
+
+  p,
+span,
+strong,
+label,
+a,
+li {
+    font-size: 1.4rem;
+  }
+}
+/* Tablet typography: 768px+ */
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 3.2rem;
+  }
+
+  h2 {
+    font-size: 2.6rem;
+  }
+
+  h3 {
+    font-size: 2.2rem;
+  }
+
+  h4 {
+    font-size: 1.8rem;
+  }
+
+  p,
+span,
+strong,
+label,
+a,
+li {
+    font-size: 1.6rem;
+  }
+}
+/* Tablet typography: 1024px+ */
+@media only screen and (min-width: 1024px) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 3.2rem;
+  }
+
+  h3 {
+    font-size: 2.4rem;
+  }
+
+  h4 {
+    font-size: 1.8rem;
+  }
+
+  p,
+span,
+strong,
+label,
+a,
+li {
+    font-size: 1.6rem;
+  }
+}
+/* Computer typography: 1280px+ */
+@media only screen and (min-width: 1280px) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 3.2rem;
+  }
+
+  h3 {
+    font-size: 2.4rem;
+  }
+
+  h4 {
+    font-size: 1.8rem;
+  }
+
+  p,
+span,
+strong,
+label,
+a,
+li {
+    font-size: 1.6rem;
+  }
+}
+/* Computer typography: 1440px+ */
+@media only screen and (min-width: 1440px) {
+  h1 {
+    font-size: 4.4rem;
+  }
+
+  h2 {
+    font-size: 3.4rem;
+  }
+
+  h3 {
+    font-size: 2.6rem;
+  }
+
+  h4 {
+    font-size: 1.8rem;
+  }
+
+  p,
+span,
+strong,
+label,
+a,
+li {
+    font-size: 1.6rem;
+  }
+}
+/* Computer typography: 1920px+ */
+@media only screen and (min-width: 1920px) {
+  h1 {
+    font-size: 4.8rem;
+  }
+
+  h2 {
+    font-size: 3.6rem;
+  }
+
+  h3 {
+    font-size: 2.8rem;
+  }
+
+  h4 {
+    font-size: 1.8rem;
+  }
+
+  p,
+span,
+strong,
+label,
+a,
+li {
+    font-size: 1.6rem;
+  }
+}
+/* Computer typography: 2560px+ */
+@media only screen and (min-width: 2560px) {
+  h1 {
+    font-size: 4.8rem;
+  }
+
+  h2 {
+    font-size: 3.8rem;
+  }
+
+  h3 {
+    font-size: 3rem;
+  }
+
+  h4 {
+    font-size: 2rem;
+  }
+
+  p,
+span,
+strong,
+label,
+a,
+li {
+    font-size: 1.8rem;
+  }
+}
+html {
+  box-sizing: border-box;
+  /* Font family */
+  font-family: "Raleway", "sans-serif";
+  /* To make rem units easier to work with (1rem = 10px) */
+  font-size: 62.5%;
+  /* Scrollbar Styling : Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #1f6f8b #1c2b2d;
+}
+
+/* Scrollbar Styling for Webkit browsers */
+::-webkit-scrollbar {
+  width: 2rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-text-color);
+  border-radius: 10px;
+  border: 5px solid var(--theme-body-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-title-color);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Uncomment if custom outline is planned for each element needed */
+/* :focus {
+     outline: none;
+}*/
+/* Links decoration */
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Remove default list styling */
+ul,
+ol {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p {
+  line-height: 1.4;
+}
+
+/* ========== */
+/* Utilities */
+/* ========== */
+/* Container */
+.ss-container {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1920px;
+}
+@media only screen and (min-width: 1920px) {
+  .ss-container {
+    width: 85%;
+  }
+}
+@media only screen and (min-width: 2560px) {
+  .ss-container {
+    width: 70%;
+  }
+}
+
+/* Video container */
+.ss-video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Text Alignement */
+/* Left */
+.ss-align-left {
+  text-align: left;
+}
+
+/* Right */
+.ss-align-right {
+  text-align: right;
+}
+
+/* Center */
+.ss-align-center {
+  text-align: center;
+}
+
+/* General Alignement */
+/* Flex */
+.ss-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ss-flex-v-center {
+  display: flex;
+  align-items: center;
+}
+
+.ss-flex-h-center {
+  display: flex;
+  justify-content: center;
+}
+
+/* Grid */
+.ss-grid-center {
+  display: grid;
+  place-content: center;
+}
+
+/* To round elements as a circle */
+.ss-circle {
+  border-radius: 50%;
+}
+
+/* Scale transition animation */
+.ss-scale-transition {
+  transition: transform 0.3s cubic-bezier(0.53, 0.01, 0.36, 1.63);
+}
+
+/* Box shadows */
+.ss-shadow-1 {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ss-shadow-2 {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.07), 0 1px 10px 0 rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.ss-shadow-3 {
+  box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.07), 0 3px 14px 2px rgba(0, 0, 0, 0.06), 0 5px 5px -3px rgba(0, 0, 0, 0.1);
+}
+
+.ss-shadow-4 {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.07), 0 6px 30px 5px rgba(0, 0, 0, 0.06), 0 8px 10px -7px rgba(0, 0, 0, 0.1);
+}
+
+.ss-shadow-5 {
+  box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.07), 0 9px 46px 8px rgba(0, 0, 0, 0.06), 0 11px 15px -7px rgba(0, 0, 0, 0.1);
+}
+
+/* Prevent content from wrapping and forcing it into single line with ellipsis at the end */
+.ss-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Removing default appearance */
+.ss-no-appearance {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Prevent scrolling while the navigation menu is open */
+.ss-prevent-scroll {
+  overflow: hidden;
+}
+
+/* Overlay */
+.ss-overlay {
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 15;
+  opacity: 0.8;
+  display: none;
+}
+
+.ss-overlay.active {
+  display: block;
+}
+
+/* Table with spacing inside only */
+.ss-table-inspacing td {
+  border: 0px solid transparent;
+  background-clip: padding-box;
+}
+.ss-table-inspacing tr > td + td {
+  border-left-width: 5px;
+}
+.ss-table-inspacing tr > td {
+  border-top-width: 5px;
+}
+
+/* Component : Navigation Menu Icon */
+.menu-bars,
+.menu-bars:after,
+.menu-bars:before {
+  width: 35px;
+  height: 3px;
+}
+
+.menu-bars {
+  position: relative;
+  transform: translateY(25px);
+  background: var(--theme-title-color);
+}
+
+.menu-bars.animate {
+  background: var(--theme-title-color);
+}
+
+.menu-bars:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  background: var(--theme-title-color);
+  transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu-bars:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  background: var(--theme-title-color);
+  transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu-bars.animate:after {
+  top: 0;
+  transform: rotate(45deg);
+  background: var(--theme-title-color);
+  transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu-bars.animate {
+  background: none;
+}
+
+.menu-bars.animate:before {
+  bottom: 0;
+  transform: rotate(-45deg);
+  background: var(--theme-title-color);
+  transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Component : Theme toggler (light/dark) */
+#theme-toggler {
+  cursor: pointer;
+  background: 0;
+  border: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.9;
+  border-radius: 50%;
+  isolation: isolate;
+}
+
+#theme-toggler svg {
+  transition: fill 0.3s linear;
+  fill: var(--theme-title-color);
+}
+
+.light-theme #theme-toggler svg:hover {
+  transition: fill 0.3s linear;
+  fill: var(--theme-title-color);
+}
+
+.dark-theme #theme-toggler svg:hover {
+  transition: fill 0.3s linear;
+  fill: var(--theme-title-color);
+}
+
+.light-theme #theme-toggler::before {
+  animation: pulseToLight 650ms ease-out;
+}
+
+.dark-theme #theme-toggler::before {
+  animation: pulseToDark 650ms ease-out;
+}
+
+.toggle-circle {
+  transition: transform 500ms ease-out;
+}
+
+.light-theme .toggle-circle {
+  transform: translateX(-15%);
+}
+
+.toggle-sun {
+  transform-origin: center center;
+  transition: transform 750ms cubic-bezier(0.11, 0.14, 0.29, 1.32);
+}
+
+.light-theme .toggle-sun {
+  transform: rotate(0.5turn);
+}
+
+@keyframes pulseToLight {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  10% {
+    transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+@keyframes pulseToDark {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  10% {
+    transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+/* Component : Scroll to top button */
+.scroll-to-top {
+  display: grid;
+  place-content: center;
+  position: fixed;
+  right: 7.5%;
+  bottom: 5%;
+  z-index: 5;
+  height: 50px;
+  width: 50px;
+  color: var(--theme-body-bg);
+  font-size: 3rem;
+  background-color: var(--theme-title-color);
+  opacity: 1;
+  transition: opacity 0.3s linear, visibility 0.3s linear, background-color 0.3s linear, color 0.3s linear;
+}
+@media only screen and (min-width: 1280px) {
+  .scroll-to-top {
+    cursor: pointer;
+    right: 45px;
+    bottom: 75px;
+  }
+}
+
+.scroll-to-top.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s linear, visibility 0.3s linear, background-color 0.3s linear, color 0.3s linear;
+}
+
+/* Component : Code snippets */
+.snippet {
+  padding: 1em;
+  margin: 2em 0 1em 0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
+  background: var(--theme-code-bg);
+  white-space: pre;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: grid;
+  gap: 2em;
+  grid-template-columns: 1fr 50px;
+  border-radius: 5px;
+}
+.snippet__code {
+  font-weight: 500;
+  color: var(--theme-code-color);
+  font-family: "Inconsolata", "Monaco", "Consolas", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  display: block;
+  margin-left: 10px;
+  padding: 15px 16px 14px;
+  border-left: 1px solid var(--theme-code-color);
+  overflow-x: auto;
+  font-size: 1.4rem;
+  line-height: 19px;
+}
+.snippet__copy {
+  width: 48px;
+  height: 48px;
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--theme-code-color);
+  border: 2px solid var(--theme-code-color);
+  opacity: 1;
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+.snippet__copy.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s linear;
+}
+.snippet__copy.copied {
+  border: 2px solid;
+  transition: 0.3s linear;
+}
+
+/* File, folder or small code piece */
+.file {
+  color: var(--theme-code-color);
+  background: var(--theme-code-bg);
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 0px 8px 2px 8px;
+  margin: 0 5px;
+}
+
+/* Header */
+.header {
+  position: relative;
+}
+.header__logo {
+  justify-self: center;
+  width: 70%;
+}
+@media only screen and (min-width: 1280px) {
+  .header__logo {
+    width: 100%;
+  }
+}
+.header__logo__link path {
+  fill: var(--theme-title-color);
+}
+
+/* Navigation */
+/* Sidebar */
+/* Footer */
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.footer__text {
+  color: var(--theme-text-color);
+}
+
+@media only screen and (min-width: 1024px) {
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+/* ======= */
+/* Layouts */
+/* ======= */
+/* ======== */
+/* Home CSS */
+/* ======== */
+.base {
+  display: grid;
+  grid-template-rows: 150px 1fr 150px;
+  background: var(--theme-body-bg);
+}
+
+a {
+  color: var(--theme-title-color);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  grid-template-areas: "doc" "collab" "features";
+  background: var(--theme-section-bg);
+  border-radius: 10px;
+}
+
+.section {
+  padding: 2em 2em 0em 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.section__header {
+  display: flex;
+  align-items: center;
+}
+.section__header__icon {
+  font-size: 2rem;
+  color: var(--theme-title-color);
+  margin-right: 0.5em;
+  width: 2.4rem;
+}
+.section__header__title {
+  font-size: 2rem;
+}
+.section__body {
+  padding: 2em 0;
+}
+.section__body p {
+  color: var(--theme-text-color);
+}
+.section__body p:not(:last-child) {
+  padding-bottom: 1em;
+}
+.section__body__content {
+  display: flex;
+  flex-direction: column;
+}
+.section__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-top: 1px dashed #d8e3e7;
+  padding: 2em 0;
+  gap: 2em;
+}
+@media only screen and (min-width: 768px) {
+  .section__footer {
+    justify-content: space-between;
+  }
+}
+.section__footer__link {
+  font-size: 1.3rem;
+}
+
+.doc {
+  grid-area: doc;
+}
+
+.collab {
+  border-top: 3px solid rgba(216, 227, 231, 0.4);
+  grid-area: collab;
+}
+
+.features {
+  border-top: 3px solid rgba(216, 227, 231, 0.4);
+  grid-area: features;
+}
+
+.p-bottom {
+  padding-bottom: 2em;
+}
+
+@media only screen and (min-width: 1024px) {
+  .base {
+    grid-template-rows: 200px 1fr 100px;
+  }
+
+  .main {
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "doc collab" "features features";
+  }
+
+  .section__body__content {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .section__body__content__element {
+    flex: 1 1 50%;
+  }
+
+  .collab {
+    border-top: unset;
+    border-left: 3px solid rgba(216, 227, 231, 0.4);
+  }
+
+  .p-left {
+    padding-left: 2em;
+  }
+
+  .p-right {
+    padding-right: 2em;
+  }
+}
+/* ======= */
+/* 404 CSS */
+/* ======= */
+.error-404 {
+  background: #ffffff;
+  border-radius: 10px;
+  justify-items: center;
+  gap: 3em;
+}
+
+/* ======== */
+/* Main CSS */
+/* ======== *//*# sourceMappingURL=main.css.map */

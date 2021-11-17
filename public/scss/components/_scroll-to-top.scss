@@ -1,0 +1,38 @@
+// Abstracts
+@use "../abstracts/" as *;
+
+/* Component : Scroll to top button */
+@mixin sttb_transition {
+    transition: opacity 0.3s linear, visibility 0.3s linear, background-color 0.3s linear, color 0.3s linear;
+}
+.scroll-to-top {
+    display: grid;
+    place-content: center;
+    position: fixed;
+    right: 7.5%;
+    bottom: 5%;
+    z-index: 5;
+    height: 50px;
+    width: 50px;
+    color: var(--theme-body-bg);
+    font-size: 3rem;
+    background-color: var(--theme-title-color);
+    opacity: 1;
+    @include sttb_transition();
+    @include breakpoint-min(ss-var($breakpoints, "1280")) {
+        cursor: pointer;
+        right: 45px;
+        bottom: 75px;
+        // &:hover {
+        //     color: var(--theme-body-bg);
+        //     background-color: var(--theme-text-color);
+        //     border: 2px solid var(--theme-text-color);
+        //     @include sttb_transition();
+        // }
+    }
+}
+.scroll-to-top.hidden {
+    opacity: 0;
+    visibility: hidden;
+    @include sttb_transition();
+}

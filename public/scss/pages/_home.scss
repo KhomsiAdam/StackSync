@@ -1,0 +1,120 @@
+// Abstracts
+@use "../abstracts" as *;
+
+/* ======== */
+/* Home CSS */
+/* ======== */
+
+.base {
+    display: grid;
+    grid-template-rows: 150px 1fr 150px;
+    background: var(--theme-body-bg);
+}
+
+a {
+    color: var(--theme-title-color);
+    font-weight: ss-var($font-weight, "semibold");
+    text-decoration: underline;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "doc"
+        "collab"
+        "features";
+    background: var(--theme-section-bg);
+    border-radius: 10px;
+}
+.section {
+    padding: 2em 2em 0em 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__header {
+        display: flex;
+        align-items: center;
+        &__icon {
+            font-size: 2rem;
+            color: var(--theme-title-color);
+            margin-right: 0.5em;
+            width: 2.4rem;
+        }
+        &__title {
+            font-size: 2rem;
+        }
+    }
+    &__body {
+        padding: 2em 0;
+        p {
+            color: var(--theme-text-color);
+            &:not(:last-child) {
+                padding-bottom: 1em;
+            }
+        }
+        &__content {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    &__footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        @include breakpoint-min(ss-var($breakpoints, "768")) {
+            justify-content: space-between;
+        }
+        border-top: 1px dashed ss-var($colors, "neutral", "lightgray");
+        padding: 2em 0;
+        gap: 2em;
+        &__link {
+            font-size: 1.3rem;
+        }
+    }
+}
+.doc {
+    grid-area: doc;
+}
+.collab {
+    border-top: 3px solid rgba(ss-var($colors, "neutral", "lightgray"), 0.4);
+    grid-area: collab;
+}
+.features {
+    border-top: 3px solid rgba(ss-var($colors, "neutral", "lightgray"), 0.4);
+    grid-area: features;
+}
+.p-bottom {
+    padding-bottom: 2em;
+}
+@include breakpoint-min(ss-var($breakpoints, "1024")) {
+    .base {
+        grid-template-rows: 200px 1fr 100px;
+    }
+    .main {
+        grid-template-columns: 50% 50%;
+        grid-template-areas:
+            "doc collab"
+            "features features";
+    }
+    .section__body {
+        &__content {
+            flex-direction: row;
+            flex-wrap: wrap;
+            &__element {
+                flex: 1 1 50%;
+            }
+        }
+    }
+    .collab {
+        border-top: unset;
+        border-left: 3px solid rgba(ss-var($colors, "neutral", "lightgray"), 0.4);
+    }
+    .p-left {
+        padding-left: 2em;
+    }
+    .p-right {
+        padding-right: 2em;
+    }
+}
